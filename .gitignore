@@ -18,6 +18,8 @@ DerivedData/
 xcuserdata/
 
 ## Other
+*.xccheckout
+profile
 *.moved-aside
 *.xcuserstate
 

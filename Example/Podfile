@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'WYZSound_Example' do
+  pod 'WYZSound', :path => '../'
+
+  target 'WYZSound_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

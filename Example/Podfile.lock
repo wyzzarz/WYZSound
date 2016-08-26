@@ -1,0 +1,16 @@
+PODS:
+  - WYZSound (0.1.0)
+
+DEPENDENCIES:
+  - WYZSound (from `../`)
+
+EXTERNAL SOURCES:
+  WYZSound:
+    :path: ../
+
+SPEC CHECKSUMS:
+  WYZSound: 412f6a40db16f56b27b4fbc7d3f09158e59bd863
+
+PODFILE CHECKSUM: 005436eff26dc493df8173daa34058ffdb6b28b7
+
+COCOAPODS: 1.0.1
