@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		0081684618E7542B7E2AB7C628A8D0A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A99E1ED6492F91E6807B16994861C5 /* Foundation.framework */; };
 		47492984C8C4620743414A8E365C21D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A99E1ED6492F91E6807B16994861C5 /* Foundation.framework */; };
+		4A14039EB51D958F9F68A3EAB2158F84 /* WYZTextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6BE88E6B7964E067E640244CE28C /* WYZTextToSpeech.swift */; };
 		5D70A4B011F45CDA3953DD5EDB25D84D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283836EF5A0AA5CDF757AD35B494F1FA /* AVFoundation.framework */; };
+		840D444971B9B54453A5611358106734 /* WYZTimeToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784D5712829A0B6533ACA36CB622C72 /* WYZTimeToSpeech.swift */; };
 		9786FAC56E50610AA1ECF2FEC2CB972F /* Pods-WYZSound_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D92F9585E76ADF490D137D4BA08959A4 /* Pods-WYZSound_Tests-dummy.m */; };
 		B7691611D6D7E3FE405A0A0C9F50EED7 /* Pods-WYZSound_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A27D5DB3BF9F2B1B164D33E32D8B4C2 /* Pods-WYZSound_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2FDF20959C524E914162DF3A5F5FB32 /* Pods-WYZSound_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 77740E9FB188C54962618D484F238AFE /* Pods-WYZSound_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		002CE32CF97B9D04731D3A9AD7A1CEBF /* Pods-WYZSound_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WYZSound_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		0784D5712829A0B6533ACA36CB622C72 /* WYZTimeToSpeech.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WYZTimeToSpeech.swift; sourceTree = "<group>"; };
 		22271C0CEAAAD8A0516A20B5C2A932BE /* Pods_WYZSound_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WYZSound_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		222755D41A9EB90DBC7B5785EBA63BEF /* WYZSound-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WYZSound-dummy.m"; sourceTree = "<group>"; };
 		27C3B84E959FFBAA5E2AEE0B47ED98CC /* WYZSound-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WYZSound-prefix.pch"; sourceTree = "<group>"; };
@@ -46,6 +49,7 @@
 		6CFD6F6385958DECDB54141012E64631 /* Pods-WYZSound_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WYZSound_Example-resources.sh"; sourceTree = "<group>"; };
 		7120B9B701CE101DFB3962210959EC3E /* Pods-WYZSound_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WYZSound_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		77740E9FB188C54962618D484F238AFE /* Pods-WYZSound_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WYZSound_Tests-umbrella.h"; sourceTree = "<group>"; };
+		86BF6BE88E6B7964E067E640244CE28C /* WYZTextToSpeech.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WYZTextToSpeech.swift; sourceTree = "<group>"; };
 		8B4858D82289DC447F8ADACD79A54059 /* Pods-WYZSound_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WYZSound_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		8CBFBD18E55BCBAC166D791D686317C9 /* Pods_WYZSound_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WYZSound_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -135,6 +139,8 @@
 		99B6B472DE627625C46FA89141B96271 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				86BF6BE88E6B7964E067E640244CE28C /* WYZTextToSpeech.swift */,
+				0784D5712829A0B6533ACA36CB622C72 /* WYZTimeToSpeech.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -348,6 +354,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0669E94774478473359B8D15B88BC42 /* WYZSound-dummy.m in Sources */,
+				4A14039EB51D958F9F68A3EAB2158F84 /* WYZTextToSpeech.swift in Sources */,
+				840D444971B9B54453A5611358106734 /* WYZTimeToSpeech.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

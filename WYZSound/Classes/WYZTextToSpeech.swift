@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WYZTextToSpeech.swift
 //  WYZSound
 //
 //  Copyright (c) 2016 Warner Zee
@@ -23,17 +23,48 @@
 //  SOFTWARE.
 //
 
-import UIKit
-import WYZSound
+import AVFoundation
+import Foundation
 
-class ViewController: UIViewController {
+public class WYZTextToSpeech {
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    let tts = WYZTimeToSpeech()
-    tts.speakTime()
+  let synthesizer = AVSpeechSynthesizer()
+  
+  public enum PitchMultiplier: Float {
+    case min, max, dflt
+    func floatValue() -> Float {
+      switch self {
+      case .min: return Float(0.5)
+      case .max: return Float(2.0)
+      default: return Float(1.0)
+      }
+    }
+  }
+  public var pitchMultiplier: Float
+  
+  public enum Rate: Float {
+    case min, max, dflt
+    func floatValue() -> Float {
+      switch self {
+      case .min: return AVSpeechUtteranceMinimumSpeechRate
+      case .max: return AVSpeechUtteranceMaximumSpeechRate
+      default: return AVSpeechUtteranceDefaultSpeechRate
+      }
+    }
+  }
+  public var rate: Float
+  
+  public init() {
+    pitchMultiplier = PitchMultiplier.dflt.floatValue()
+    rate = Rate.dflt.floatValue()
+  }
+  
+  public func speak(text: String?) -> AVSpeechUtterance {
+    let utt = AVSpeechUtterance(string: text ?? "")
+    utt.pitchMultiplier = pitchMultiplier
+    utt.rate = rate
+    synthesizer.speakUtterance(utt)
+    return utt
   }
   
 }
-

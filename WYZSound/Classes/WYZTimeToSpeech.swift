@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WYZTimeToSpeech.swift
 //  WYZSound
 //
 //  Copyright (c) 2016 Warner Zee
@@ -10,10 +10,10 @@
 //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 //  copies of the Software, and to permit persons to whom the Software is
 //  furnished to do so, subject to the following conditions:
-//  
+//
 //  The above copyright notice and this permission notice shall be included in all
 //  copies or substantial portions of the Software.
-//  
+//
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,17 +23,33 @@
 //  SOFTWARE.
 //
 
-import UIKit
-import WYZSound
+import AVFoundation
+import Foundation
 
-class ViewController: UIViewController {
+public class WYZTimeToSpeech : WYZTextToSpeech {
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    let tts = WYZTimeToSpeech()
-    tts.speakTime()
+  let dateFormatter = NSDateFormatter()
+  let dateToken = "${DATE}"
+  
+  let timeFormatter = NSDateFormatter()
+  let timeToken = "${TIME}"
+  
+  public var textFormat: String?
+  
+  override public init() {
+    super.init()
+    dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+    textFormat = "The time is now " + dateToken
+  }
+  
+  public func speakTime() -> AVSpeechUtterance {
+    return speakTime(NSDate())
+  }
+  
+  public func speakTime(date: NSDate) -> AVSpeechUtterance {
+    var fullText = textFormat ?? dateToken
+    fullText = fullText.stringByReplacingOccurrencesOfString(dateToken, withString: dateFormatter.stringFromDate(date))
+    return speak(fullText)
   }
   
 }
-
