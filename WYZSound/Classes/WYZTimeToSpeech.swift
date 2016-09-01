@@ -28,28 +28,60 @@ import Foundation
 
 public class WYZTimeToSpeech : WYZTextToSpeech {
   
-  let dateFormatter = NSDateFormatter()
-  let dateToken = "${DATE}"
+  public let dateFormatter = NSDateFormatter()
+  public let dateToken = "📅"
   
-  let timeFormatter = NSDateFormatter()
-  let timeToken = "${TIME}"
+  public let timeFormatter = NSDateFormatter()
+  public let timeToken = "⏰"
   
-  public var textFormat: String?
+  public var dateMessage: String?
+  public var timeMessage: String?
+  public var dateTimeMessage: String?
   
   override public init() {
     super.init()
-    dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-    textFormat = "The time is now " + dateToken
+    dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+    timeFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+    dateMessage = "Today is " + dateToken
+    timeMessage = "The time is now " + timeToken
+    dateTimeMessage = "It is " + timeToken + " on " + dateToken
   }
+  
+  // MARK: - DATE
+  
+  public func speakDate() -> AVSpeechUtterance {
+    return speakDate(NSDate())
+  }
+  
+  public func speakDate(date: NSDate) -> AVSpeechUtterance {
+    var fullText = dateMessage ?? dateToken
+    fullText = fullText.stringByReplacingOccurrencesOfString(dateToken, withString: dateFormatter.stringFromDate(date))
+    return speak(fullText)
+  }
+
+  // MARK: - TIME
   
   public func speakTime() -> AVSpeechUtterance {
     return speakTime(NSDate())
   }
   
   public func speakTime(date: NSDate) -> AVSpeechUtterance {
-    var fullText = textFormat ?? dateToken
-    fullText = fullText.stringByReplacingOccurrencesOfString(dateToken, withString: dateFormatter.stringFromDate(date))
+    var fullText = timeMessage ?? timeToken
+    fullText = fullText.stringByReplacingOccurrencesOfString(timeToken, withString: timeFormatter.stringFromDate(date))
     return speak(fullText)
   }
+
+  // MARK: - DATE & Time
   
+  public func speakDateTime() -> AVSpeechUtterance {
+    return speakDateTime(NSDate())
+  }
+  
+  public func speakDateTime(date: NSDate) -> AVSpeechUtterance {
+    var fullText = dateTimeMessage ?? timeToken + " on " + dateToken
+    fullText = fullText.stringByReplacingOccurrencesOfString(dateToken, withString: dateFormatter.stringFromDate(date))
+    fullText = fullText.stringByReplacingOccurrencesOfString(timeToken, withString: timeFormatter.stringFromDate(date))
+    return speak(fullText)
+  }
+
 }

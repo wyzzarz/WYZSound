@@ -29,10 +29,10 @@ import Foundation
 public class WYZTextToSpeech {
   
   let synthesizer = AVSpeechSynthesizer()
-  
+ 
   public enum PitchMultiplier: Float {
     case min, max, dflt
-    func floatValue() -> Float {
+    public func floatValue() -> Float {
       switch self {
       case .min: return Float(0.5)
       case .max: return Float(2.0)
@@ -40,11 +40,25 @@ public class WYZTextToSpeech {
       }
     }
   }
-  public var pitchMultiplier: Float
+  private var _pitchMultiplier: Float = PitchMultiplier.dflt.floatValue()
+  public var pitchMultiplier: Float {
+    get {
+      return _pitchMultiplier
+    }
+    set {
+      if (newValue < PitchMultiplier.min.floatValue()) {
+        _pitchMultiplier = PitchMultiplier.min.floatValue()
+      } else if (newValue > PitchMultiplier.max.floatValue()) {
+        _pitchMultiplier = PitchMultiplier.max.floatValue()
+      } else {
+        _pitchMultiplier = newValue
+      }
+    }
+  }
   
   public enum Rate: Float {
     case min, max, dflt
-    func floatValue() -> Float {
+    public func floatValue() -> Float {
       switch self {
       case .min: return AVSpeechUtteranceMinimumSpeechRate
       case .max: return AVSpeechUtteranceMaximumSpeechRate
@@ -52,10 +66,23 @@ public class WYZTextToSpeech {
       }
     }
   }
-  public var rate: Float
+  private var _rate: Float = Rate.dflt.floatValue()
+  public var rate: Float {
+    get {
+      return _rate
+    }
+    set {
+      if (newValue < Rate.min.floatValue()) {
+        _rate = Rate.min.floatValue()
+      } else if (newValue > Rate.max.floatValue()) {
+        _rate = Rate.max.floatValue()
+      } else {
+        _rate = newValue
+      }
+    }
+  }
   
   public init() {
-    pitchMultiplier = PitchMultiplier.dflt.floatValue()
     rate = Rate.dflt.floatValue()
   }
   
