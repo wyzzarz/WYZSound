@@ -30,21 +30,30 @@ public class WYZTimeToSpeech : WYZTextToSpeech {
   
   public let dateFormatter = NSDateFormatter()
   public let dateToken = "📅"
+  var _dateMessage: String?
+  public var dateMessage: String? {
+    get { return _dateMessage ?? "Today is 📅" }
+    set { _dateMessage = newValue }
+  }
   
   public let timeFormatter = NSDateFormatter()
   public let timeToken = "⏰"
-  
-  public var dateMessage: String?
-  public var timeMessage: String?
-  public var dateTimeMessage: String?
+  var _timeMessage: String?
+  public var timeMessage: String? {
+    get { return _timeMessage ?? "The time is now ⏰" }
+    set { _timeMessage = newValue }
+  }
+
+  var _dateTimeMessage: String?
+  public var dateTimeMessage: String? {
+    get { return _dateTimeMessage ?? "It is ⏰ on 📅" }
+    set { _dateTimeMessage = newValue }
+  }
   
   override public init() {
     super.init()
     dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
     timeFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-    dateMessage = "Today is " + dateToken
-    timeMessage = "The time is now " + timeToken
-    dateTimeMessage = "It is " + timeToken + " on " + dateToken
   }
   
   // MARK: - DATE
