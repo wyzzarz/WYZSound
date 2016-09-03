@@ -30,6 +30,8 @@ public class WYZTextToSpeech {
   
   let synthesizer = AVSpeechSynthesizer()
  
+  // MARK: - Pitch
+  
   public enum PitchMultiplier: Float {
     case min, max, dflt
     public func floatValue() -> Float {
@@ -55,6 +57,8 @@ public class WYZTextToSpeech {
       }
     }
   }
+  
+  // MARK: - Rate
   
   public enum Rate: Float {
     case min, max, dflt
@@ -82,14 +86,47 @@ public class WYZTextToSpeech {
     }
   }
   
+  // MARK: - Volume
+  
+  public enum Volume: Float {
+    case min, max, dflt
+    public func floatValue() -> Float {
+      switch self {
+      case .min: return 0
+      case .max: return 1
+      default: return 1
+      }
+    }
+  }
+  private var _volume: Float = Volume.dflt.floatValue()
+  public var volume: Float {
+    get {
+      return _rate
+    }
+    set {
+      if (newValue < Volume.min.floatValue()) {
+        _volume = Volume.min.floatValue()
+      } else if (newValue > Volume.max.floatValue()) {
+        _volume = Volume.max.floatValue()
+      } else {
+        _volume = newValue
+      }
+    }
+  }
+  
+  // MARK: - Methods
+  
   public init() {
+    pitchMultiplier = PitchMultiplier.dflt.floatValue()
     rate = Rate.dflt.floatValue()
+    volume = Volume.dflt.floatValue()
   }
   
   public func speak(text: String?) -> AVSpeechUtterance {
     let utt = AVSpeechUtterance(string: text ?? "")
     utt.pitchMultiplier = pitchMultiplier
     utt.rate = rate
+    utt.volume = volume
     synthesizer.speakUtterance(utt)
     return utt
   }

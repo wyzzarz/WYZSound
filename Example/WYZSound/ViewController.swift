@@ -32,8 +32,9 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     let tts = WYZTimeToSpeech()
-    tts.rate = WYZTextToSpeech.Rate.min.floatValue()
-    tts.pitchMultiplier = WYZTextToSpeech.PitchMultiplier.max.floatValue()
+//    tts.pitchMultiplier = WYZTextToSpeech.PitchMultiplier.max.floatValue()
+//    tts.rate = WYZTextToSpeech.Rate.min.floatValue()
+//    tts.volume = WYZTextToSpeech.Volume.max.floatValue() * 0.5
     tts.speakDate()
     tts.speakTime()
     tts.speakDateTime()
