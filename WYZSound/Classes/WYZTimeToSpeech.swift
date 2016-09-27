@@ -29,24 +29,24 @@ import Foundation
 public class WYZTimeToSpeech : WYZTextToSpeech {
   
   public let dateFormatter = NSDateFormatter()
-  public let dateToken = "📅"
+  static public let dateToken = "📅"
   var _dateMessage: String?
   public var dateMessage: String? {
-    get { return _dateMessage ?? "Today is 📅" }
+    get { return _dateMessage ?? "Today is \(WYZTimeToSpeech.dateToken)" }
     set { _dateMessage = newValue }
   }
   
   public let timeFormatter = NSDateFormatter()
-  public let timeToken = "⏰"
+  static public let timeToken = "⏰"
   var _timeMessage: String?
   public var timeMessage: String? {
-    get { return _timeMessage ?? "The time is now ⏰" }
+    get { return _timeMessage ?? "The time is now \(WYZTimeToSpeech.timeToken)" }
     set { _timeMessage = newValue }
   }
 
   var _dateTimeMessage: String?
   public var dateTimeMessage: String? {
-    get { return _dateTimeMessage ?? "It is ⏰ on 📅" }
+    get { return _dateTimeMessage ?? "It is \(WYZTimeToSpeech.timeToken) on \(WYZTimeToSpeech.dateToken)" }
     set { _dateTimeMessage = newValue }
   }
   
@@ -63,8 +63,8 @@ public class WYZTimeToSpeech : WYZTextToSpeech {
   }
   
   public func speakDate(date: NSDate) -> AVSpeechUtterance {
-    var fullText = dateMessage ?? dateToken
-    fullText = fullText.stringByReplacingOccurrencesOfString(dateToken, withString: dateFormatter.stringFromDate(date))
+    var fullText = dateMessage ?? WYZTimeToSpeech.dateToken
+    fullText = fullText.stringByReplacingOccurrencesOfString(WYZTimeToSpeech.dateToken, withString: dateFormatter.stringFromDate(date))
     return speak(fullText)
   }
 
@@ -75,8 +75,8 @@ public class WYZTimeToSpeech : WYZTextToSpeech {
   }
   
   public func speakTime(date: NSDate) -> AVSpeechUtterance {
-    var fullText = timeMessage ?? timeToken
-    fullText = fullText.stringByReplacingOccurrencesOfString(timeToken, withString: timeFormatter.stringFromDate(date))
+    var fullText = timeMessage ?? WYZTimeToSpeech.timeToken
+    fullText = fullText.stringByReplacingOccurrencesOfString(WYZTimeToSpeech.timeToken, withString: timeFormatter.stringFromDate(date))
     return speak(fullText)
   }
 
@@ -87,9 +87,9 @@ public class WYZTimeToSpeech : WYZTextToSpeech {
   }
   
   public func speakDateTime(date: NSDate) -> AVSpeechUtterance {
-    var fullText = dateTimeMessage ?? timeToken + " on " + dateToken
-    fullText = fullText.stringByReplacingOccurrencesOfString(dateToken, withString: dateFormatter.stringFromDate(date))
-    fullText = fullText.stringByReplacingOccurrencesOfString(timeToken, withString: timeFormatter.stringFromDate(date))
+    var fullText = dateTimeMessage ?? WYZTimeToSpeech.timeToken + " on " + WYZTimeToSpeech.dateToken
+    fullText = fullText.stringByReplacingOccurrencesOfString(WYZTimeToSpeech.dateToken, withString: dateFormatter.stringFromDate(date))
+    fullText = fullText.stringByReplacingOccurrencesOfString(WYZTimeToSpeech.timeToken, withString: timeFormatter.stringFromDate(date))
     return speak(fullText)
   }
 
