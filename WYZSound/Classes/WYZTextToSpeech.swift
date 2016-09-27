@@ -130,5 +130,22 @@ public class WYZTextToSpeech {
     synthesizer.speakUtterance(utt)
     return utt
   }
+
+  /*
+   * Requires the following in Info.plist:
+   * Requred background modes: App plays audio or streams audio/video using AirPlay
+   */
+  private var _backgroundEnabled = false;
+  public var backgroundEnabled: Bool {
+    get { return _backgroundEnabled }
+    set {
+      _backgroundEnabled = newValue
+      do {
+        let sess = AVAudioSession.sharedInstance()
+        if _backgroundEnabled { try sess.setCategory(AVAudioSessionCategoryPlayback) }
+        try sess.setActive(newValue)
+      } catch { }
+    }
+  }
   
 }
