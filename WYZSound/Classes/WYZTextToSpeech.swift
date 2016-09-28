@@ -101,7 +101,7 @@ public class WYZTextToSpeech {
   private var _volume: Float = Volume.dflt.floatValue()
   public var volume: Float {
     get {
-      return _rate
+      return _volume
     }
     set {
       if (newValue < Volume.min.floatValue()) {
