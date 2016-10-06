@@ -26,70 +26,70 @@
 import AVFoundation
 import Foundation
 
-public class WYZTimeToSpeech : WYZTextToSpeech {
+open class WYZTimeToSpeech : WYZTextToSpeech {
   
-  public let dateFormatter = NSDateFormatter()
-  static public let dateToken = "📅"
+  open let dateFormatter = DateFormatter()
+  static open let dateToken = "📅"
   var _dateMessage: String?
-  public var dateMessage: String? {
+  open var dateMessage: String? {
     get { return _dateMessage ?? "Today is \(WYZTimeToSpeech.dateToken)" }
     set { _dateMessage = newValue }
   }
   
-  public let timeFormatter = NSDateFormatter()
-  static public let timeToken = "⏰"
+  open let timeFormatter = DateFormatter()
+  static open let timeToken = "⏰"
   var _timeMessage: String?
-  public var timeMessage: String? {
+  open var timeMessage: String? {
     get { return _timeMessage ?? "The time is now \(WYZTimeToSpeech.timeToken)" }
     set { _timeMessage = newValue }
   }
 
   var _dateTimeMessage: String?
-  public var dateTimeMessage: String? {
+  open var dateTimeMessage: String? {
     get { return _dateTimeMessage ?? "It is \(WYZTimeToSpeech.timeToken) on \(WYZTimeToSpeech.dateToken)" }
     set { _dateTimeMessage = newValue }
   }
   
   override public init() {
     super.init()
-    dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-    timeFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+    dateFormatter.dateStyle = DateFormatter.Style.short
+    timeFormatter.timeStyle = DateFormatter.Style.short
   }
   
   // MARK: - DATE
   
-  public func speakDate() -> AVSpeechUtterance {
-    return speakDate(NSDate())
+  open func speakDate() -> AVSpeechUtterance {
+    return speakDate(Date())
   }
   
-  public func speakDate(date: NSDate) -> AVSpeechUtterance {
+  open func speakDate(_ date: Date) -> AVSpeechUtterance {
     var fullText = dateMessage ?? WYZTimeToSpeech.dateToken
-    fullText = fullText.stringByReplacingOccurrencesOfString(WYZTimeToSpeech.dateToken, withString: dateFormatter.stringFromDate(date))
+    fullText = fullText.replacingOccurrences(of: WYZTimeToSpeech.dateToken, with: dateFormatter.string(from: date))
     return speak(fullText)
   }
 
   // MARK: - TIME
   
-  public func speakTime() -> AVSpeechUtterance {
-    return speakTime(NSDate())
+  open func speakTime() -> AVSpeechUtterance {
+    return speakTime(Date())
   }
   
-  public func speakTime(date: NSDate) -> AVSpeechUtterance {
+  open func speakTime(_ date: Date) -> AVSpeechUtterance {
     var fullText = timeMessage ?? WYZTimeToSpeech.timeToken
-    fullText = fullText.stringByReplacingOccurrencesOfString(WYZTimeToSpeech.timeToken, withString: timeFormatter.stringFromDate(date))
+    fullText = fullText.replacingOccurrences(of: WYZTimeToSpeech.timeToken, with: timeFormatter.string(from: date))
     return speak(fullText)
   }
 
   // MARK: - DATE & Time
   
-  public func speakDateTime() -> AVSpeechUtterance {
-    return speakDateTime(NSDate())
+  open func speakDateTime() -> AVSpeechUtterance {
+    return speakDateTime(Date())
   }
   
-  public func speakDateTime(date: NSDate) -> AVSpeechUtterance {
+  open func speakDateTime(_ date: Date) -> AVSpeechUtterance {
     var fullText = dateTimeMessage ?? WYZTimeToSpeech.timeToken + " on " + WYZTimeToSpeech.dateToken
-    fullText = fullText.stringByReplacingOccurrencesOfString(WYZTimeToSpeech.dateToken, withString: dateFormatter.stringFromDate(date))
-    fullText = fullText.stringByReplacingOccurrencesOfString(WYZTimeToSpeech.timeToken, withString: timeFormatter.stringFromDate(date))
+    fullText = fullText.replacingOccurrences(of: WYZTimeToSpeech.dateToken, with: dateFormatter.string(from: date))
+    fullText = fullText.replacingOccurrences(of: WYZTimeToSpeech.timeToken, with: timeFormatter.string(from: date))
     return speak(fullText)
   }
 

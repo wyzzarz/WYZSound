@@ -26,7 +26,7 @@
 import AVFoundation
 import Foundation
 
-public class WYZTextToSpeech {
+open class WYZTextToSpeech {
   
   let synthesizer = AVSpeechSynthesizer()
  
@@ -42,8 +42,8 @@ public class WYZTextToSpeech {
       }
     }
   }
-  private var _pitchMultiplier: Float = PitchMultiplier.dflt.floatValue()
-  public var pitchMultiplier: Float {
+  fileprivate var _pitchMultiplier: Float = PitchMultiplier.dflt.floatValue()
+  open var pitchMultiplier: Float {
     get {
       return _pitchMultiplier
     }
@@ -70,8 +70,8 @@ public class WYZTextToSpeech {
       }
     }
   }
-  private var _rate: Float = Rate.dflt.floatValue()
-  public var rate: Float {
+  fileprivate var _rate: Float = Rate.dflt.floatValue()
+  open var rate: Float {
     get {
       return _rate
     }
@@ -98,8 +98,8 @@ public class WYZTextToSpeech {
       }
     }
   }
-  private var _volume: Float = Volume.dflt.floatValue()
-  public var volume: Float {
+  fileprivate var _volume: Float = Volume.dflt.floatValue()
+  open var volume: Float {
     get {
       return _volume
     }
@@ -122,12 +122,12 @@ public class WYZTextToSpeech {
     volume = Volume.dflt.floatValue()
   }
   
-  public func speak(text: String?) -> AVSpeechUtterance {
+  open func speak(_ text: String?) -> AVSpeechUtterance {
     let utt = AVSpeechUtterance(string: text ?? "")
     utt.pitchMultiplier = pitchMultiplier
     utt.rate = rate
     utt.volume = volume
-    synthesizer.speakUtterance(utt)
+    synthesizer.speak(utt)
     return utt
   }
 
@@ -135,8 +135,8 @@ public class WYZTextToSpeech {
    * Requires the following in Info.plist:
    * Requred background modes: App plays audio or streams audio/video using AirPlay
    */
-  private var _backgroundEnabled = false;
-  public var backgroundEnabled: Bool {
+  fileprivate var _backgroundEnabled = false;
+  open var backgroundEnabled: Bool {
     get { return _backgroundEnabled }
     set {
       _backgroundEnabled = newValue
