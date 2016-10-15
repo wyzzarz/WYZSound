@@ -3,8 +3,8 @@
 Pod::Spec.new do |s|
 
   s.name             = 'WYZSound'
-  s.version          = '0.1.1'
-  s.license          = 'MIT'
+  s.version          = '0.1.2'
+  s.license          = 'Apache License, Version 2.0'
   s.summary          = 'Sounds effects library.'
   s.homepage         = 'https://github.com/wyzzarz/WYZSound'
   s.author           = 'Warner Zee'
